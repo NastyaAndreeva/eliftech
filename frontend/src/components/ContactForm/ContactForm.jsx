@@ -1,9 +1,10 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, ErrorMessage } from "formik";
+import { FormStyled, InputStyled } from "./ContactForm.styled";
 
 const ContactForm = () => {
   return (
     <div>
-      <h1>Please, enter your contact information</h1>
+      <h1>Enter your contact information</h1>
       <Formik
         initialValues={{ email: "", name: "", address: "", phone: "" }}
         validate={(values) => {
@@ -17,27 +18,39 @@ const ContactForm = () => {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values) => {
           setTimeout(() => {
             console.log(JSON.stringify(values, null, 2));
-            setSubmitting(false);
           }, 400);
         }}
       >
-        {({ isSubmitting }) => (
-          <Form>
-            <Field type="text" name="name" />
+        {() => (
+          <FormStyled>
+            <InputStyled
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+            />
             <ErrorMessage name="name" component="div" />
-            <Field type="email" name="email" />
+            <InputStyled
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+            />
             <ErrorMessage name="email" component="div" />
-            <Field type="text" name="phone" />
+            <InputStyled
+              type="text"
+              name="phone"
+              placeholder="Enter your phone"
+            />
             <ErrorMessage name="phone" component="div" />
-            <Field type="text" name="address" />
+            <InputStyled
+              type="text"
+              name="address"
+              placeholder="Enter your address"
+            />
             <ErrorMessage name="address" component="div" />
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
-          </Form>
+          </FormStyled>
         )}
       </Formik>
     </div>

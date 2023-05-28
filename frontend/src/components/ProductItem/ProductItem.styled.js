@@ -5,7 +5,7 @@ export const ProductItemStyled = styled.li`
   margin-right: 30px;
 `;
 
-export const AddButton = styled.button`
+export const StyledButton = styled.button`
   cursor: pointer;
   box-sizing: border-box;
   display: flex;

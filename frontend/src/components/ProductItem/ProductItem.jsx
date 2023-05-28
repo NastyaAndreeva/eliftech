@@ -1,6 +1,9 @@
-import { AddButton, ProductItemStyled } from "./ProductItem.styled";
+import { useContext } from "react";
+import { ProductItemStyled, StyledButton } from "./ProductItem.styled";
+import { ProductsContext } from "../../productsContext";
 
 const ProductItem = ({ product }) => {
+  const orderList = useContext(ProductsContext);
   return (
     <ProductItemStyled>
       <img
@@ -10,7 +13,11 @@ const ProductItem = ({ product }) => {
         height="100px"
       />
       <p>{product.description}</p>
-      <AddButton>Add to cart</AddButton>
+      <StyledButton
+        onClick={() => orderList.push({ name: product.name, quantity: 1 })}
+      >
+        Add to cart
+      </StyledButton>
     </ProductItemStyled>
   );
 };
