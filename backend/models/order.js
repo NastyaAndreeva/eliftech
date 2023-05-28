@@ -3,38 +3,43 @@ const Joi = require("joi");
 
 const { handleSaveErrors } = require("../helpers");
 
-const orderSchema = new Schema(
-  {
-    name: {
-      type: String,
-      required: [true, "Set name for contact"],
-    },
-    photo: {
-      type: String,
-      unuque: true,
-    },
-    description: {
-      type: String,
-    },
-    price: {
-      type: Number,
-      default: false,
-    },
+const order = {
+  name: {
+    type: String,
+    required: [true, "Set name for contact"],
   },
-  { versionKey: false, timestamps: true }
-);
+  image: {
+    type: String,
+    unique: true,
+  },
+  quantity: {
+    type: Number,
+  },
+  price: {
+    type: Number,
+    default: false,
+  },
+};
 
-productSchema.post("save", handleSaveErrors);
-
-const addOrderSchema = Joi.object({
-  name: Joi.string().required(),
-  photo: Joi.string().required(),
-  description: Joi.string().required(),
-  price: Joi.boolean(),
+const orderSchema = new Schema({
+  orders: [order],
 });
 
-const schemas = { addSchema };
+orderSchema.post("save", handleSaveErrors);
 
-const Product = model("product", productSchema);
+let joiOrder = Joi.object().keys({
+  name: Joi.string().required(),
+  image: Joi.string().required(),
+  quantity: Joi.number().required(),
+  price: Joi.number(),
+});
 
-module.exports = { Product, schemas };
+const addSchema = Joi.object({
+  orders: Joi.array().items(joiOrder),
+});
+
+const orderSchemas = { addSchema };
+
+const Order = model("order", orderSchema);
+
+module.exports = { Order, orderSchemas };

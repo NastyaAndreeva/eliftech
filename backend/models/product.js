@@ -3,34 +3,31 @@ const Joi = require("joi");
 
 const { handleSaveErrors } = require("../helpers");
 
-const productSchema = new Schema(
-  {
-    name: {
-      type: String,
-      required: [true, "Set name for contact"],
-    },
-    photo: {
-      type: String,
-      unuque: true,
-    },
-    description: {
-      type: String,
-    },
-    price: {
-      type: Number,
-      default: false,
-    },
+const productSchema = new Schema({
+  name: {
+    type: String,
+    required: [true, "Set name for contact"],
   },
-  { versionKey: false, timestamps: true }
-);
+  image: {
+    type: String,
+    unique: true,
+  },
+  description: {
+    type: String,
+  },
+  price: {
+    type: Number,
+    default: false,
+  },
+});
 
 productSchema.post("save", handleSaveErrors);
 
 const addSchema = Joi.object({
   name: Joi.string().required(),
-  photo: Joi.string().required(),
+  image: Joi.string().required(),
   description: Joi.string().required(),
-  price: Joi.boolean(),
+  price: Joi.number(),
 });
 
 const schemas = { addSchema };
