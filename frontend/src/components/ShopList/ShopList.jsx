@@ -1,5 +1,6 @@
 import {
   ShopListContainer,
+  ShopListElement,
   ShopListTitle,
   StyledShopList,
 } from "./ShopList.styled";
@@ -7,12 +8,17 @@ import {
 const mockShops = ["Sagittari", "Nivara", "Yeni", "Isis", "Celestea"];
 
 const ShopList = () => {
+  const onShopClick = () => {
+    console.log("click: ");
+  };
   return (
     <ShopListContainer>
       <ShopListTitle>Shops</ShopListTitle>
       <StyledShopList>
         {mockShops.map((el) => (
-          <li key={el}>{el}</li>
+          <ShopListElement onClick={onShopClick} key={el} isSelected={false}>
+            {el}
+          </ShopListElement>
         ))}
       </StyledShopList>
     </ShopListContainer>

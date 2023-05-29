@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductItemStyled = styled.li`
-  width: 300px;
+  width: 250px;
   margin-right: 30px;
 `;
 
@@ -18,7 +18,6 @@ export const StyledButton = styled.button`
   width: 146px;
   height: 54px;
   color: #fff;
-  margin-top: 24px;
   background-color: #28a745;
   &:hover {
     background-color: #fff;
@@ -26,4 +25,10 @@ export const StyledButton = styled.button`
     color: #28a745;
     transition: color 0.35s, background-color 0.35s;
   }
+`;
+
+export const ProductDetail = styled.p`
+  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 22px;
 `;

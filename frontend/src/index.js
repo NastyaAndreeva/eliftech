@@ -7,7 +7,7 @@ import "./modern-normalize.css";
 import NotFound from "./pages/NotFound";
 import Shops from "./pages/Shops";
 import Cart from "./pages/Cart";
-import { ProductsContext } from "./productsContext";
+import App from "./App";
 // import App from "./App";
 
 const router = createBrowserRouter([
@@ -32,8 +32,7 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ProductsContext.Provider value={[]}>
-      <RouterProvider router={router} />
-    </ProductsContext.Provider>
+    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
