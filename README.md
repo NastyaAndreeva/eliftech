@@ -1,9 +1,9 @@
 # eliftech
-Built With
+# Built With
 React
 Node.js (Express)
 
-How to Run a Project
+# How to Run a Project
 Front-end
 1) to move to frontend directory: cd frontend 
 2) to install all packages: npm i
