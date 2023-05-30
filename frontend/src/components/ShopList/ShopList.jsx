@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   ShopListContainer,
   ShopListElement,
@@ -8,15 +9,24 @@ import {
 const mockShops = ["Sagittari", "Nivara", "Yeni", "Isis", "Celestea"];
 
 const ShopList = () => {
-  const onShopClick = () => {
-    console.log("click: ");
+  const [selectedIndex, setIndex] = useState(0);
+  const onShopClick = (idx) => {
+    localStorage.setItem("shop", mockShops[idx]);
+    setIndex(idx);
   };
   return (
     <ShopListContainer>
       <ShopListTitle>Shops</ShopListTitle>
       <StyledShopList>
-        {mockShops.map((el) => (
-          <ShopListElement onClick={onShopClick} key={el} isSelected={false}>
+        {mockShops.map((el, idx) => (
+          <ShopListElement
+            onClick={() => onShopClick(idx)}
+            key={el}
+            style={{
+              backgroundColor: idx === selectedIndex ? "teal" : "white",
+              color: idx === selectedIndex ? "white" : "black",
+            }}
+          >
             {el}
           </ShopListElement>
         ))}

@@ -1,6 +1,6 @@
 import { Formik, ErrorMessage } from "formik";
 import { useEffect, useState } from "react";
-import { NotificationContainer } from "react-notifications";
+
 import {
   ContactBox,
   ContactFormTitle,
@@ -13,10 +13,10 @@ import OrderList from "../OrderList/OrderList";
 import { StyledButton } from "../ProductItem/ProductItem.styled";
 import { addOrder } from "../../api";
 import { Container } from "../shared/Container.styled";
-import "react-notifications/lib/notifications.css";
 
 const ContactForm = () => {
   const orders = JSON.parse(localStorage.getItem("orders"));
+  const shop = localStorage.getItem("shop");
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -44,7 +44,14 @@ const ContactForm = () => {
         }}
         onSubmit={(values, { resetForm }) => {
           const orders = JSON.parse(localStorage.getItem("orders"));
-          const newOrder = { orders, customer: values };
+          const newOrder = {
+            orders,
+            customer: values,
+            shop,
+            date: new Date(),
+            total,
+          };
+          console.log("newOrder: ", newOrder);
           addOrder(newOrder);
 
           resetForm();
@@ -101,7 +108,6 @@ const ContactForm = () => {
           </Container>
         )}
       </Formik>
-      <NotificationContainer />
     </div>
   );
 };
