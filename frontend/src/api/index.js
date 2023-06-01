@@ -19,6 +19,15 @@ export const getOrders = async (setOrders) => {
   }
 };
 
+export const getOrderById = async (id, setOrder) => {
+  try {
+    const { data } = await apiInstance.get(`/orders/${id}`);
+    setOrder(data);
+  } catch (error) {
+    console.log("error: ", error);
+  }
+};
+
 export const addOrder = async (body) => {
   try {
     await apiInstance.post("/orders", body);

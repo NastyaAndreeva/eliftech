@@ -19,9 +19,10 @@ router.get("/", ctrlWrapper(ctrl.getAll));
 router.post("/", validateBody(schemas.addSchema), ctrlWrapper(ctrl.add));
 
 router.get("/orders", ctrlWrapper(ctrlOrders.getAll));
+router.get("/orders/:id", ctrlWrapper(ctrlOrders.getById));
 router.post(
   "/orders",
-  //   validateBody(orderSchemas.addSchema),
+  validateBody(orderSchemas.addSchema),
   ctrlWrapper(ctrlOrders.add)
 );
 

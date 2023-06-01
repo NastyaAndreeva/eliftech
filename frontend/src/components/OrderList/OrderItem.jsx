@@ -8,30 +8,27 @@ import {
   QuantityContainer,
   ValueBox,
 } from "./OrderList. styled";
+import calculateTotalValue from "../../helpers/calculateTotalValue";
 
 const OrderItem = ({ order, setTotal }) => {
   const [value, setValue] = useState(order.quantity);
   const handleButtonClick = (isAdd) => {
     setValue((s) => (isAdd ? s + 1 : s - 1));
-    const orders = JSON.parse(localStorage.getItem("orders"));
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
     const updatedOrders = orders.map((el) =>
       el.name === order.name
         ? { ...el, quantity: isAdd ? el.quantity + 1 : el.quantity - 1 }
         : el
     );
 
-    const totalValue = updatedOrders.reduce(
-      (acc, el) => acc + el.price * el.quantity,
-      0
-    );
-    setTotal(totalValue);
+    setTotal(calculateTotalValue(updatedOrders));
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
   };
 
   const onDeleteBtn = (name) => {
     const orders = JSON.parse(localStorage.getItem("orders"));
     const updatedOrders = orders.filter((el) => el.name !== name);
-
+    setTotal(calculateTotalValue(updatedOrders));
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
   };
   return (

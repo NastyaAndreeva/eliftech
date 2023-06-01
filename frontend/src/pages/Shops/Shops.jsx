@@ -1,7 +1,7 @@
+import { useEffect, useState } from "react";
 import { getProducts } from "../../api";
 import ProductList from "../../components/ProductList";
 import ShopList from "../../components/ShopList";
-import { useEffect, useState } from "react";
 import { Container } from "../../components/shared/Container.styled";
 
 const Shops = () => {
@@ -9,7 +9,6 @@ const Shops = () => {
 
   useEffect(() => {
     getProducts(setProducts);
-    localStorage.setItem("orders", JSON.stringify([]));
   }, []);
 
   return (

@@ -2,7 +2,7 @@ import OrderItem from "./OrderItem";
 import { OrderListStyled } from "./OrderList. styled";
 
 const OrderList = ({ setTotal }) => {
-  const orders = JSON.parse(localStorage.getItem("orders"));
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
   return (
     <OrderListStyled>
       {orders.map((order) => (

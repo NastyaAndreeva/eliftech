@@ -6,7 +6,7 @@ import {
 
 const ProductItem = ({ product }) => {
   const onClick = () => {
-    const orderList = JSON.parse(localStorage.getItem("orders"));
+    const orderList = JSON.parse(localStorage.getItem("orders")) || [];
     const order = {
       name: product.name,
       quantity: 1,
@@ -41,7 +41,7 @@ const ProductItem = ({ product }) => {
       </ProductDetail>
       <ProductDetail>
         <b>Price: </b>
-        {price} UAH
+        {price} ₴
       </ProductDetail>
       <StyledButton onClick={onClick}>Add to cart</StyledButton>
     </ProductItemStyled>
