@@ -1,4 +1,4 @@
-import { Form, Field } from "formik";
+import { Form, Field, ErrorMessage } from "formik";
 import styled from "styled-components";
 
 export const FormStyled = styled(Form)`
@@ -38,4 +38,17 @@ export const FooterContactForm = styled.div`
 export const RightSideContactForm = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const ErrorMessageStyled = styled(ErrorMessage)`
+  color: red;
+  position: absolute;
+  bottom: 0;
+`;
+
+export const ContactDetailBox = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 `;

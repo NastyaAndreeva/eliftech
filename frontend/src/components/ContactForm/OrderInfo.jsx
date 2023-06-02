@@ -11,7 +11,9 @@ const OrderInfo = ({ total, setTotal }) => {
           <b>Total: </b>
           {total}
         </p>
-        <StyledButton type="submit">Send</StyledButton>
+        <StyledButton type="submit" disabled={total === 0}>
+          Send
+        </StyledButton>
       </FooterContactForm>
     </RightSideContactForm>
   );

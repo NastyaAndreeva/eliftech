@@ -19,6 +19,16 @@ export const StyledButton = styled.button`
   height: 54px;
   color: #fff;
   background-color: #28a745;
+  &:disabled {
+    &:hover {
+      border: 1px solid #999999;
+      background-color: #cccccc;
+      color: #666666;
+    }
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
   &:hover {
     background-color: #fff;
     border: 1px solid #28a745;
